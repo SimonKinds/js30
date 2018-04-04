@@ -46,6 +46,40 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const bandsList = document.querySelector('#bands');
+
+populateBandList(sortBands(bands))
+
+function sortBands(bands) {
+  const articles = ['A', 'An', 'The'];
+  const regex = /^(A|An|The) /;
+
+  const without = bands.map(band => band.replace(regex, ''));
+  console.table(without);
+  
+  return bands.sort((a, b) => lexicalOrder(a.replace(regex, ''), b.replace(regex, '')));
+}
+
+function lexicalOrder(a, b) {
+  if (a < b) {
+    return -1;
+  }
+  if (b < a) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function populateBandList(items) {
+  bandsList.innerHTML = items.map(createBandItem).join('');
+}
+
+function createBandItem(band) {
+  return `<li>${band}</li>`;
+}
+
+
 
 </script>
 
