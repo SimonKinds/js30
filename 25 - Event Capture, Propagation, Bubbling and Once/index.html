@@ -39,6 +39,13 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+
+  divs.forEach(div => div.addEventListener('click', onClick));
+
+  function onClick() {
+    console.log(this.classList.value);
+  }
 
 </script>
 </body>
